@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "customer-api-collection",
+		"name": "Customer Management API",
+		"description": "Complete CRUD operations for Customer Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Check if the API server is running and get endpoint information"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Retrieve all customers from the database"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer - Complete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Ahmed Mohamed\",\n  \"email\": \"ahmed@example.com\",\n  \"phone\": \"+218-91-123-4567\",\n  \"address\": \"Tripoli, Libya\",\n  \"company\": \"Tech Solutions\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Create a new customer with all fields"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer - Minimal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Fatima Ali\",\n  \"email\": \"fatima@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Create a customer with only required fields (name and email)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer - Validation Error",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Test User\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Test validation - missing required email field (should return 400)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer - Duplicate Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Another User\",\n  \"email\": \"ahmed@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Test duplicate email validation (should return 409)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Get a specific customer by ID (replace {{customer_id}} with actual ID)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer - Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/FAKE-ID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"FAKE-ID"
+					]
+				},
+				"description": "Test 404 error for non-existent customer"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer - Complete",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Ahmed Mohamed Updated\",\n  \"phone\": \"+218-91-999-8888\",\n  \"company\": \"Updated Tech Solutions\",\n  \"address\": \"Benghazi, Libya\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Update customer with all fields (replace {{customer_id}} with actual ID)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer - Partial",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone\": \"+218-92-777-6666\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Update only specific fields (replace {{customer_id}} with actual ID)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer - Not Found",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Updated Name\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/FAKE-ID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"FAKE-ID"
+					]
+				},
+				"description": "Test 404 error when updating non-existent customer"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Customers by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/search/ahmed",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"search",
+						"ahmed"
+					]
+				},
+				"description": "Search customers by name (case-insensitive)"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Customers by Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/search/example.com",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"search",
+						"example.com"
+					]
+				},
+				"description": "Search customers by email domain"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Customers by Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/search/tech",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"search",
+						"tech"
+					]
+				},
+				"description": "Search customers by company name"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers by Status - Active",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/status/active",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"status",
+						"active"
+					]
+				},
+				"description": "Get all customers with 'active' status"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers by Status - Inactive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/status/inactive",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"status",
+						"inactive"
+					]
+				},
+				"description": "Get all customers with 'inactive' status"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Delete a customer by ID (replace {{customer_id}} with actual ID)"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer - Not Found",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/FAKE-ID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"FAKE-ID"
+					]
+				},
+				"description": "Test 404 error when deleting non-existent customer"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3001",
+			"type": "string"
+		},
+		{
+			"key": "customer_id",
+			"value": "CUST-1234567890-1",
+			"type": "string",
+			"description": "Replace with actual customer ID from create response"
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "customer-management-api",
+  "version": "1.0.0",
+  "description": "RESTful API for Customer Management with CRUD operations",
+  "main": "customer_server.js",
+  "scripts": {
+    "start": "node customer_server.js",
+    "dev": "nodemon customer_server.js",
+    "test": "node test_customer_api.js"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "customer",
+    "crud",
+    "demo"
+  ],
+  "author": "Customer Management API",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
